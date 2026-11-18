@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10271f">
+<title>For You — Birthday & Graduation</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+:root{--green:#10271f;--green2:#193b2d;--gold:#d8b66a;--cream:#f4eedf;--ink:#151a17;--muted:#b8c5bb}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#09130f;color:var(--cream);font-family:'DM Sans',sans-serif;min-height:100vh}
+button{font:inherit;cursor:pointer}.site{min-height:100vh;overflow:hidden;background:radial-gradient(ellipse at 50% 0%,#244b39 0%,#10271f 38%,#09130f 100%)}
+.page{display:none;min-height:100vh;padding:clamp(22px,5vw,58px) 18px 36px;position:relative;animation:appear .7s ease both}.page.active{display:flex;flex-direction:column;align-items:center}
+@keyframes appear{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.eyebrow{letter-spacing:.32em;text-transform:uppercase;font-size:10px;color:var(--gold);text-align:center}
+h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;font-weight:500}
+h1{font-size:clamp(42px,8vw,82px);line-height:.94;text-align:center;margin:18px 0 10px;letter-spacing:-.035em}
+h1 em{color:var(--gold);font-style:italic}.subtitle{text-align:center;color:#d4ded6;font-size:13px;letter-spacing:.08em}
+.rule{width:74px;height:1px;background:var(--gold);margin:24px auto}
+.count-wrap{margin:34px auto 16px;text-align:center;width:min(760px,100%)}
+.count-label{font-size:11px;letter-spacing:.23em;text-transform:uppercase;color:var(--muted)}
+.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:17px auto 0;max-width:590px}
+.timebox{border:1px solid #b99a55a6;background:#0b1b15c9;padding:14px 5px 11px;border-radius:10px;box-shadow:inset 0 0 22px #d8b66a0b}
+.timebox strong{display:block;font-family:'Cormorant Garamond',serif;font-size:clamp(30px,6vw,48px);font-weight:500;color:var(--gold);line-height:1}
+.timebox span{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#b9c8bf}
+.road-scene{width:min(850px,100%);height:clamp(180px,34vw,300px);margin:22px auto 10px;position:relative;border-radius:16px;overflow:hidden;border:1px solid #c5a45a55;background:linear-gradient(#132c22 0%,#1d3b2c 55%,#17241e 56%,#0b100d 100%);box-shadow:0 20px 70px #0008}
+.road-scene:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 75%,#d8b66a18,transparent 55%)}
+.moon{position:absolute;width:54px;height:54px;border-radius:50%;background:#d9c68d;right:12%;top:14%;box-shadow:0 0 35px #d8b66a66}
+.hill{position:absolute;bottom:43%;width:70%;height:36%;background:#0e2119;border-radius:50% 50% 0 0;opacity:.8}
+.hill.one{left:-12%}.hill.two{right:-15%;height:28%;background:#142d21}
+.road{position:absolute;bottom:-26%;left:18%;width:64%;height:88%;background:linear-gradient(90deg,#171d1a,#303632 48%,#171d1a);transform:perspective(160px) rotateX(25deg);border-top:3px solid #b9a16a}
+.road:after{content:"";position:absolute;top:8%;bottom:0;left:49%;width:5px;background:repeating-linear-gradient(to bottom,#e5d9b8 0 22px,transparent 22px 42px);opacity:.9}
+.roadside{position:absolute;bottom:16%;height:2px;background:#d8b66a66;width:25%;transform:rotate(-8deg)}.roadside.left{left:0}.roadside.right{right:0;transform:rotate(8deg)}
+.bike{position:absolute;z-index:3;width:min(310px,48%);left:50%;bottom:21%;transform:translateX(-50%);filter:drop-shadow(0 12px 9px #000b);animation:ride 2.6s ease-in-out infinite}
+@keyframes ride{0%,100%{transform:translate(-50%,0) rotate(-.6deg)}50%{transform:translate(-50%,-7px) rotate(.6deg)}}
+.road-caption{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:#d7c58d}
+.next{margin:24px auto 0;display:flex;align-items:center;gap:12px;border:1px solid var(--gold);background:linear-gradient(135deg,#1a3b2b,#0c1c15);color:var(--cream);padding:13px 25px;border-radius:50px;letter-spacing:.16em;text-transform:uppercase;font-size:10px;transition:.25s;box-shadow:0 8px 24px #0004}
+.next:hover{background:var(--gold);color:#101812;transform:translateY(-2px)}.next .symbol{font-size:20px;color:var(--gold)}.next:hover .symbol{color:#101812}
+.page-indicator{margin-top:auto;padding-top:28px;font-size:9px;letter-spacing:.25em;color:#81968a}
+.panel{width:min(760px,100%);margin:30px auto 0;text-align:center}
+.panel h2{font-size:clamp(42px,7vw,68px);color:var(--gold);line-height:1;margin:0 0 18px}
+.panel p{font-size:15px;line-height:1.9;color:#e4e9e2;max-width:610px;margin:0 auto}
+.ticket-row{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:32px auto 18px}
+.ticket{width:min(280px,44%);min-width:145px;aspect-ratio:1.85/1;background:linear-gradient(135deg,#eee4cb,#c8b68e);color:#1c2921;border-radius:8px;position:relative;padding:13px 14px;text-align:left;box-shadow:0 12px 28px #0006;overflow:hidden}
+.ticket:before,.ticket:after{content:"";position:absolute;top:42%;width:22px;height:22px;background:#10271f;border-radius:50%}.ticket:before{left:-12px}.ticket:after{right:-12px}
+.ticket .ticket-top{font-size:8px;letter-spacing:.2em;text-transform:uppercase;border-bottom:1px dashed #6e654f;padding-bottom:7px}
+.ticket .ticket-title{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,3vw,25px);font-weight:700;line-height:1;margin-top:8px}
+.ticket .ticket-meta{font-size:8px;letter-spacing:.12em;margin-top:7px}
+.ticket .stub{position:absolute;right:12px;top:38px;writing-mode:vertical-rl;font-size:8px;letter-spacing:.16em;border-left:1px dashed #6e654f;padding-left:8px;height:60%}
+.film-note{font-size:10px!important;letter-spacing:.15em;text-transform:uppercase;color:var(--gold)!important;margin-top:8px!important}
+.phoenix{font-size:35px;filter:drop-shadow(0 0 13px #d8a34b66)}
+.letter-frame{width:min(800px,100%);margin:28px auto 0;padding:clamp(10px,3vw,22px);background:linear-gradient(135deg,#8c6b3e,#d2b77e 18%,#9c794a 50%,#d8c18c);box-shadow:0 22px 70px #0009;border:1px solid #e8d7a4;border-radius:4px;position:relative}
+.letter{background:radial-gradient(ellipse at 50% 40%,#fff9e9,#e9d8b3 75%,#d6bd8d);color:#352719;padding:clamp(24px,5vw,52px);min-height:440px;position:relative;border:1px solid #9c7b4c;box-shadow:inset 0 0 45px #8a633322}
+.letter:before{content:"";position:absolute;inset:10px;border:1px solid #9e7b4b66;pointer-events:none}
+.letter .wax{width:54px;height:54px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#a94738,#6d201d 70%);color:#f0d8a4;display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-size:25px;margin:0 auto 18px;box-shadow:0 4px 9px #51321b66;border:2px solid #c18b58}
+.letter h2{text-align:center;font-size:clamp(30px,5vw,43px);margin:0 0 22px;color:#60452b}
+.letter p{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,2.4vw,21px);line-height:1.62;margin:0;color:#38291d;text-align:left}
+.letter .sign{text-align:right;margin-top:20px;font-style:italic;font-size:23px}
+.letter .hearts{text-align:center;font-size:24px;margin-top:12px}
+.coupon{width:min(700px,100%);margin:42px auto 0;padding:clamp(22px,5vw,44px);background:#efe4c9;color:#1b2b21;border:2px dashed #ad8c4e;outline:7px solid #efe4c91a;position:relative;box-shadow:0 20px 55px #0008;text-align:center}
+.coupon:before,.coupon:after{content:"";position:absolute;width:30px;height:30px;border-radius:50%;background:#10271f;top:50%;transform:translateY(-50%)}.coupon:before{left:-16px}.coupon:after{right:-16px}
+.coupon .coupon-label{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#92703b}
+.coupon h2{font-size:clamp(36px,7vw,58px);margin:14px 0;color:#193b2d}
+.coupon p{font-family:'Cormorant Garamond',serif;font-size:clamp(19px,3vw,25px);line-height:1.5;margin:0 auto;max-width:520px}
+.coupon .small{font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;margin-top:24px;color:#81663d}
+.coupon-icon{font-size:35px;margin-bottom:10px}
+.back{margin-top:16px;border:0;background:transparent;color:#c7b17c;font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:12px}
+@media(max-width:520px){.countdown{gap:6px}.timebox{padding:12px 2px}.road-scene{height:190px}.bike{width:58%;bottom:23%}.letter{padding:25px 20px}.letter:before{inset:7px}.ticket{width:43%;padding:10px}.ticket .ticket-meta{font-size:7px}}
+</style>
+</head>
+<body>
+<div class="site">
+<section class="page active" id="page1">
+  <div class="eyebrow">A little surprise, made with love</div>
+  <h1>My Birthday <em>&</em><br>Graduation Day</h1>
+  <div class="subtitle">November 27 · A day worth celebrating</div>
+  <div class="rule"></div>
+  <div class="count-wrap">
+    <div class="count-label">The countdown ends at midnight</div>
+    <div class="countdown" aria-live="polite">
+      <div class="timebox"><strong id="days">00</strong><span>Days</span></div>
+      <div class="timebox"><strong id="hours">00</strong><span>Hours</span></div>
+      <div class="timebox"><strong id="minutes">00</strong><span>Minutes</span></div>
+      <div class="timebox"><strong id="seconds">00</strong><span>Seconds</span></div>
+    </div>
+  </div>
+  <div class="road-scene" aria-label="Ilustración de una motocicleta roja y blanca recorriendo una autopista">
+    <div class="moon"></div><div class="hill one"></div><div class="hill two"></div>
+    <div class="roadside left"></div><div class="roadside right"></div><div class="road"></div>
+    <svg class="bike" viewBox="0 0 620 270" role="img" aria-label="Motocicleta deportiva roja y blanca de perfil">
+      <defs>
+        <linearGradient id="fairingRed" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff6660"/><stop offset=".42" stop-color="#d91f2a"/><stop offset="1" stop-color="#751019"/></linearGradient>
+        <linearGradient id="pearlWhite" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#aeb9b7"/></linearGradient>
+        <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e5e9e5"/><stop offset=".5" stop-color="#68736f"/><stop offset="1" stop-color="#202824"/></linearGradient>
+        <radialGradient id="tire"><stop offset=".48" stop-color="#202522"/><stop offset=".52" stop-color="#68716c"/><stop offset=".61" stop-color="#111613"/><stop offset=".82" stop-color="#303936"/><stop offset="1" stop-color="#080c0a"/></radialGradient>
+      </defs>
+      <ellipse cx="310" cy="226" rx="235" ry="15" fill="#0009"/>
+      <!-- wheels and brake discs -->
+      <g><circle cx="145" cy="183" r="68" fill="url(#tire)" stroke="#090d0b" stroke-width="5"/><circle cx="145" cy="183" r="43" fill="none" stroke="#aeb7b1" stroke-width="5"/><circle cx="145" cy="183" r="12" fill="#c2c9c4"/><circle cx="145" cy="183" r="28" fill="none" stroke="#727e77" stroke-width="3" stroke-dasharray="5 7"/>
+      <circle cx="470" cy="183" r="68" fill="url(#tire)" stroke="#090d0b" stroke-width="5"/><circle cx="470" cy="183" r="43" fill="none" stroke="#aeb7b1" stroke-width="5"/><circle cx="470" cy="183" r="12" fill="#c2c9c4"/><circle cx="470" cy="183" r="28" fill="none" stroke="#727e77" stroke-width="3" stroke-dasharray="5 7"/></g>
+      <!-- chassis, swingarm and suspension -->
+      <path d="M145 183L260 120L365 184L470 183M260 120L330 188L145 183" fill="none" stroke="url(#metal)" stroke-width="13" stroke-linejoin="round"/>
+      <path d="M365 184L430 105L470 183" fill="none" stroke="#c6cfca" stroke-width="11"/>
+      <path d="M430 105L470 183" stroke="#d6ded9" stroke-width="6"/><path d="M430 105L470 183" stroke="#59645e" stroke-width="2" stroke-dasharray="5 5"/>
+      <path d="M259 121L310 88L382 99L432 116" fill="none" stroke="#171e1b" stroke-width="15" stroke-linecap="round"/>
+      <!-- rear tail -->
+      <path d="M178 119L224 91L290 94L277 121L224 139L172 145Z" fill="url(#fairingRed)" stroke="#68131a" stroke-width="4"/>
+      <path d="M188 113L226 99L257 101L224 113Z" fill="url(#pearlWhite)"/>
+      <path d="M177 119L191 128L179 137L161 133Z" fill="#f7eee0"/>
+      <!-- tank and rider seat -->
+      <path d="M235 92Q263 63 319 67L370 82L394 111L355 133L285 125L250 116Z" fill="url(#fairingRed)" stroke="#77131a" stroke-width="4"/>
+      <path d="M256 91Q288 75 330 82L359 96L319 103L270 105Z" fill="url(#pearlWhite)"/>
+      <path d="M218 91Q240 72 280 76L300 85L265 94L230 105Z" fill="#171d1a"/>
+      <!-- front sport fairing -->
+      <path d="M357 99Q399 85 436 103L466 133L451 159L403 164L365 143L342 119Z" fill="url(#fairingRed)" stroke="#74131a" stroke-width="4"/>
+      <path d="M379 104L428 108L449 127L411 128L375 119Z" fill="url(#pearlWhite)"/>
+      <path d="M418 131L456 137L447 148L411 145Z" fill="#f6f3e8"/>
+      <path d="M449 133L476 145L466 153L447 148Z" fill="#fff3d6"/>
+      <path d="M392 94L415 70L450 74L464 83L430 89L411 105Z" fill="#151b18" stroke="#aeb8b1" stroke-width="3"/>
+      <!-- windshield, mirrors and handlebar -->
+      <path d="M391 93Q402 53 434 49L450 55L425 100Z" fill="#8ca09a" fill-opacity=".75" stroke="#d7dfd8" stroke-width="3"/>
+      <path d="M391 95L375 68L356 64" fill="none" stroke="#cbd3cd" stroke-width="5" stroke-linecap="round"/>
+      <path d="M356 64L342 57" stroke="#202824" stroke-width="7" stroke-linecap="round"/>
+      <!-- engine and details -->
+      <path d="M274 130L338 126L365 160L344 192L276 185L249 155Z" fill="#303a35" stroke="#aeb8b1" stroke-width="4"/>
+      <path d="M283 141L337 140L349 160L335 179L284 177L267 157Z" fill="#111714" stroke="#78847d" stroke-width="3"/>
+      <path d="M293 149L333 149M288 159L338 159M294 169L330 169" stroke="#89958e" stroke-width="3"/>
+      <path d="M320 185L378 194L418 188" fill="none" stroke="#d5ddd7" stroke-width="7" stroke-linecap="round"/>
+      <path d="M248 184L220 196L193 192" fill="none" stroke="#9ba69f" stroke-width="7" stroke-linecap="round"/>
+      <path d="M365 116L386 111L399 119" fill="none" stroke="#f7f1df" stroke-width="4"/>
+      <path d="M190 139L217 135" stroke="#fff" stroke-width="3" opacity=".8"/>
+      <text x="304" y="119" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#f8eee0" letter-spacing="2">RACING</text>
+    </svg>
+    <div class="road-caption">Keep riding · Your next chapter starts here</div>
+  </div>
+  <button class="next" onclick="go(2)"><span class="symbol">🏍</span> Next <span>→</span></button>
+  <div class="page-indicator">01 / 04</div>
+</section>
+
+<section class="page" id="page2">
+  <div class="eyebrow">A little celebration for you</div>
+  <div class="panel">
+    <div class="phoenix">🔥 🪽</div>
+    <h2>¡Feliz cumpleaños!</h2>
+    <p>Muy feliz cumpleaños adelantado. Sabes que te adoro con todo mi corazón y por eso te invito al cine el <strong>21 de noviembre</strong> para ver <em>Los juegos del hambre</em>. Espero que disfrutes mucho esta pequeña sorpresa. ❤️</p>
+    <div class="ticket-row">
+      <div class="ticket"><div class="ticket-top">Admit one · Special invitation</div><div class="ticket-title">The Hunger Games</div><div class="ticket-meta">NOV 21 · MOVIE NIGHT</div><div class="stub">TICKET 001</div></div>
+      <div class="ticket"><div class="ticket-top">Admit one · Your +1</div><div class="ticket-title">The Hunger Games</div><div class="ticket-meta">NOV 21 · MOVIE NIGHT</div><div class="stub">TICKET 002</div></div>
+    </div>
+    <p class="film-note">Two tickets · One date · A memory together</p>
+  </div>
+  <button class="next" onclick="go(3)"><span class="symbol">🔥</span> Next <span>→</span></button>
+  <div class="page-indicator">02 / 04</div>
+</section>
+
+<section class="page" id="page3">
+  <div class="eyebrow">A letter from my heart</div>
+  <div class="letter-frame">
+    <article class="letter">
+      <div class="wax">M</div>
+      <h2>Una carta para ti</h2>
+      <p>Feliz cumpleaños adelantado, sabes que te quiero un montón y mucho más. Estoy muy orgullosa por todo lo que has logrado tú solito. Muchas gracias por permitirme estar a tu lado y dejarme ver cómo te superas día con día. Has logrado terminar la carrera con buenas calificaciones, te titulaste primero de los dos, has logrado conseguir un trabajo donde te sientes feliz y cómodo, y eso muy pocos lo logran. Eres alguien único en todo lo que haces; eres un hombre increíble y maravilloso.</p>
+      <p style="margin-top:15px">Siempre estaré para ti en las buenas y en las malas. Te apoyaré en todo lo que decidas porque eres todo para mí, eres una gran parte de mi vida y de mi felicidad. Espero que estos sentimientos sean mutuos y, si es que ambos queremos y se da la oportunidad, ya no nos separemos ni alejemos el uno del otro.</p>
+      <p style="margin-top:15px">Te quiero mucho, pechocho. Espero disfrutes la graduación y tu cumpleaños.</p>
+      <div class="hearts">❤️ 💗 🎂 🥂 🎉 🎈</div>
+      <div class="sign">Con muchísimo cariño, M.</div>
+    </article>
+  </div>
+  <button class="next" onclick="go(4)"><span class="symbol">🕯️</span> Next <span>→</span></button>
+  <div class="page-indicator">03 / 04</div>
+</section>
+
+<section class="page" id="page4">
+  <div class="eyebrow">One last little thing</div>
+  <div class="coupon">
+    <div class="coupon-icon">🎁</div>
+    <div class="coupon-label">A little promise · Made with love</div>
+    <h2>Un cupón para ti</h2>
+    <p>Aún falta para tu regalo. Aunque sea pequeño o no mucho, espero que lo aceptes de todo corazón.</p>
+    <div class="small">Válido para alguien muy especial · Con amor, M.</div>
+  </div>
+  <button class="back" onclick="go(1)">↶ Volver al inicio</button>
+  <div class="page-indicator">04 / 04 · The end… for now</div>
+</section>
+</div>
+<script>
+function go(n){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page'+n).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+const target = new Date(2026, 10, 27, 23, 59, 0, 0);
+function tick(){
+  let diff=Math.max(0,target.getTime()-Date.now());
+  const d=Math.floor(diff/86400000);diff%=86400000;
+  const h=Math.floor(diff/3600000);diff%=3600000;
+  const m=Math.floor(diff/60000);diff%=60000;
+  const s=Math.floor(diff/1000);
+  document.getElementById('days').textContent=String(d).padStart(2,'0');
+  document.getElementById('hours').textContent=String(h).padStart(2,'0');
+  document.getElementById('minutes').textContent=String(m).padStart(2,'0');
+  document.getElementById('seconds').textContent=String(s).padStart(2,'0');
+  if(target.getTime()<=Date.now())document.querySelector('.count-label').textContent='The day is finally here. Let’s celebrate!';
+}
+tick();setInterval(tick,1000);
+</script>
+</body>
+</html>
